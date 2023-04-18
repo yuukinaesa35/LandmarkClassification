@@ -27,7 +27,7 @@ class_locations = {
 
 
 # Load the model
-model_url = 'https://tfhub.dev/google/on_device_vision/classifier/landmarks_classifier_asia_V1/1'
+model = load_model('model - Copy.h5')
 
 # Function to preprocess the image
 def preprocess_image(image):
