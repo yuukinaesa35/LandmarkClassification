@@ -62,8 +62,8 @@ def predict(image):
 
 # Set up the Streamlit app
 st.set_page_config(page_title="Image Classification", page_icon=":smiley:")
-st.title("Klasifikasi Landmark")
-st.write("Unggah gambar dan aplikasi akan mengklasifikasikannya ke dalam salah satu kelas berikut:")
+st.title("Landmark Classification")
+st.write("Upload an image and the app will classify it into one of the following landmarks:")
 st.write(nama_class)
 
 # Add a map to the app
