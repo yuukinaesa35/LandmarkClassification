@@ -27,7 +27,7 @@ class_locations = {
 
 
 # Load the model
-model = load_model('model - Copy.h5')
+model = load_model('model.h5')
 
 # Function to preprocess the image
 def preprocess_image(image):
