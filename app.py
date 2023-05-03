@@ -110,8 +110,7 @@ if use_camera:
             st.write("Address:", class_location)
             # Update the map
             folium_static(m, width=700, height=500)
-    else:
-        st.write("Failed to capture image from camera.")
+
 
 elif uploaded_file is not None:
     # Read the image
