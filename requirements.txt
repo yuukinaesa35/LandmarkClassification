@@ -6,8 +6,4 @@ folium
 geopy
 streamlit-folium
 opencv-python
-libgl1-mesa-glx
-libsm6 libxext6 libxrender-dev
-apt-get update
-libgl1-mesa-glx
-libsm6 libxext6 libxrender-dev
+cv2
