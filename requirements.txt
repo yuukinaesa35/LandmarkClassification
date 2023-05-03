@@ -8,3 +8,4 @@ streamlit-folium
 opencv-python
 cv2
 av
+streamlit-webrtc
