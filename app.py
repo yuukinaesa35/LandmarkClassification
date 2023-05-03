@@ -79,36 +79,39 @@ if use_camera:
     cap = cv2.VideoCapture(0)
     # Capture an image from the camera
     ret, frame = cap.read()
-    # Save the captured image to a file
-    cv2.imwrite("camera_image.jpg", frame)
-    # Read the saved image file
-    image = Image.open("camera_image.jpg")
-    # Show the captured image
-    st.image(image, caption='Gambar dari Kamera', use_column_width=True)
-    # Make a prediction
-    prediction = predict(image)
-    if prediction is not None:
-        predicted_class, predicted_prob, probabilities = prediction
-        # Show the predicted class and probability
-        st.write("Predicted class:", predicted_class)
-        st.write("Probability:", predicted_prob, "%")
-        # Show the probabilities for each class
-        for class_name, prob in zip(nama_class, probabilities):
-            st.write(class_name, ":", prob, "%")
-        # Get the location of the predicted class
-        class_location = class_locations[predicted_class]
-        # Add a marker to the map
-        folium.Marker(
-            location=[class_location['Latitude'], class_location['Longitude']],
-            popup=class_location['name'],
-            icon=folium.Icon(color='red', icon='info-sign')
-        ).add_to(m)
-        # Zoom to the location
-        m.fit_bounds([[class_location['Latitude'], class_location['Longitude']]])
-        # Show the class location
-        st.write("Address:", class_location)
-        # Update the map
-        folium_static(m, width=700, height=500)
+    if ret:  # Check if the image was successfully captured
+        # Save the captured image to a file
+        cv2.imwrite("camera_image.jpg", frame)
+        # Read the saved image file
+        image = Image.open("camera_image.jpg")
+        # Show the captured image
+        st.image(image, caption='Gambar dari Kamera', use_column_width=True)
+        # Make a prediction
+        prediction = predict(image)
+        if prediction is not None:
+            predicted_class, predicted_prob, probabilities = prediction
+            # Show the predicted class and probability
+            st.write("Predicted class:", predicted_class)
+            st.write("Probability:", predicted_prob, "%")
+            # Show the probabilities for each class
+            for class_name, prob in zip(nama_class, probabilities):
+                st.write(class_name, ":", prob, "%")
+            # Get the location of the predicted class
+            class_location = class_locations[predicted_class]
+            # Add a marker to the map
+            folium.Marker(
+                location=[class_location['Latitude'], class_location['Longitude']],
+                popup=class_location['name'],
+                icon=folium.Icon(color='red', icon='info-sign')
+            ).add_to(m)
+            # Zoom to the location
+            m.fit_bounds([[class_location['Latitude'], class_location['Longitude']]])
+            # Show the class location
+            st.write("Address:", class_location)
+            # Update the map
+            folium_static(m, width=700, height=500)
+    else:
+        st.write("Failed to capture image from camera.")
 
 elif uploaded_file is not None:
     # Read the image
